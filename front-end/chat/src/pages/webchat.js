@@ -1,17 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Message from '../components/Message';
 import 'materialize-css';
 import TextInput from '../components/TextsInput';
 import Footer from '../style/Footer';
 
 const { io } = window;
+const ENDPOINT = 'http://localhost:3001'
+
 const WebChat = () => {
   const socket = useRef();
 
   const exampleMessage = 'Olá, tudo bem? Me diga seu nome para começarmos, por favor?';
   useEffect(() => {
-    socket.current = io('http://localhost:3001');
+    socket.current = io(ENDPOINT);
   }, [])
+
+  const handleSubmitMessage = ({ message }) => {
+    socket.current.emit('clientMessage', { message });
+  }
 
   return (
     <section>
@@ -21,7 +27,7 @@ const WebChat = () => {
         </ul>
       </div>
       <Footer>
-        <TextInput label="Enviar mensagem" iconName="send"/>
+        <TextInput label="Enviar mensagem" iconName="send" onSubmit={handleSubmitMessage}/>
       </Footer>
     </section>
   );
