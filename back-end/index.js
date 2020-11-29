@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const socketIo = require('socket.io');
 const path = require('path');
 const cors = require('cors');
-
+const chatResponses = require('./utils/chatResponses');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));

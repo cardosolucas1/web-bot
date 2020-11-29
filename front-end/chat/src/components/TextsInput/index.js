@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const TextInput = ({ label, iconName, onSubmit }) => {
+const TextsInput = ({ label, iconName, onSubmit }) => {
   const [inputMessage, setInputMessage] = useState('');
 
   const handleSubmit = (text) => {
-    onSubmit({ message: text });
+    onSubmit({ name: 'User', message: text, time: 'Agora mesmo' });
+    setInputMessage('');
   }
   return (
     <div id="sender" className="row footer-input" >
@@ -32,6 +34,12 @@ const TextInput = ({ label, iconName, onSubmit }) => {
       </form>
     </div>
   );
-}
+};
 
-export default TextInput;
+TextsInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  iconName: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
+
+export default TextsInput;
