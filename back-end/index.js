@@ -1,13 +1,30 @@
-const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const express = require('express');
+const bodyParser = require('body-parser');
+const socketIo = require('socket.io');
+const path = require('path');
+const cors = require('cors');
+const chatResponses = require('./utils/chatResponses');
+const app = express();
 
-const PORT = process.env.PORT || 3001;
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
-io.on('connection', async (socket) => {
-  console.log(`Usuário de socketId ${socket.id} conectado`);
-});
+app.get('/', (_req, res) => res.send());
 
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
+const server = app.listen(3001, () => console.log('Listening on port 3001!'));
+
+const io = socketIo(server);
+
+io.on('connect', (socket) => {
+  console.log(`Nova conexão: ${socket.id}`);
+
+  socket.on('clientMessage', ({ message }) => {
+    console.log(`Cliente ${socket.id} diz: ${message}`);
+  })
+
+  socket.on('disconnect', () => {
+    console.log(socket.id, 'desconectou-se');
+  });
 });
