@@ -14,10 +14,9 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.get('/', (_req, res) => res.send());
 
 const server = app.listen(3001, () => console.log('Listening on port 3001!'));
-// Express e socket.io rodando na mesma porta por conta do bind
 
 const io = socketIo(server);
-// Namespace padrão. io.* é o mesmo que io.sockets.*
+
 io.on('connect', (socket) => {
   console.log(`Nova conexão: ${socket.id}`);
 
