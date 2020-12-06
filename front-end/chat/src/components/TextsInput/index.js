@@ -1,39 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { ThemeContext } from '../../context/ThemeProvider';
 
-const TextsInput = ({ label, iconName, onSubmit }) => {
+const Input = styled.input`
+  width: 90vw;
+  margin: 1vh 0 1vh 3vh;
+  height: 32pt;
+  border-radius: 16pt;
+  border: 1px;
+  box-shadow: 1px 1px 1px 1px #00000014;
+`;
+
+const Form = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`;
+
+const Button = styled.button`
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: ${props => props.theme.darkGray};
+  margin: 1vh 3vh 1vh 3vh;
+  height: 40px;
+  width: 40px;
+`;
+
+const I = styled.i`
+  position: relative;
+  top: 1.5px;
+  left: 1.5px;
+  color: white;
+`;
+
+const TextsInput = ({ iconName, onSubmit }) => {
   const [inputMessage, setInputMessage] = useState('');
 
   const handleSubmit = (text) => {
-    onSubmit({ name: 'User', message: text, time: 'Agora mesmo' });
+    onSubmit({ name: 'User', message: text, time: '10:39 AM' });
     setInputMessage('');
-  }
+  };
+
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div id="sender" className="row footer-input" >
-      <form className="col s12" autoComplete="off" onSubmit={(e) => e.preventDefault()}>
-        <div className="row">
-          <div className="input-field col s12">
-            <input
-              onChange={(e) => setInputMessage(e.target.value)}
-              required 
-              data-testid="message-box"
-              type="text"
-              value={inputMessage}
-            />
-            <label htmlFor="send-message">{label}</label>
-            <button
-              data-testid="send-button"
-              className="btn waves-effect teal darken-4"
-              type="button" name="action"
-              onClick={() => handleSubmit(inputMessage)}
-            >
-              Enviar
-              <i className="material-icons right">{iconName}</i>
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+    <Form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
+      <Input onChange={(e) => setInputMessage(e.target.value)} required type="text" />
+      <Button theme={theme} type="button" name="action" onClick={() => handleSubmit(inputMessage)}>
+        <I className="material-icons right">{iconName}</I>
+      </Button>
+    </Form>
   );
 };
 

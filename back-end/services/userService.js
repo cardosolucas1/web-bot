@@ -1,58 +1,22 @@
-const userModel = require('../models/userModel');
-const {
-  confirmPhoneNumber,
-  whatIsYourName,
-  whatIsYourCep,
-  whatIsYourComplement,
-} = require('../utils/chatResponses');
-
-const botMessage = (title, text, next, time) => ({ title, text, next, time });
-
-const registerPhone = async (phone) => {
-  await userModel.registerPhone(phone);
-  // registerPhone devolve um { insertedId, ok }
-
+const registerPhone = (phone) => {
   console.log(`Telefone ${phone} registrado`);
-  return botMessage(
-    confirmPhoneNumber.title,
-    confirmPhoneNumber.text,
-    confirmPhoneNumber.next,
-    new Date(),
-  );
-};
+  return phone;
+}
 
-const registerName = async (phone, name) => {
-  await userModel.registerName(phone, name);
+const registerName = (name) => {
   console.log(`Nome ${name} registrado`);
-  return botMessage(
-    whatIsYourName.title,
-    whatIsYourName.text,
-    whatIsYourName.next,
-    new Date(),
-  );
-};
+  return name;
+}
 
-const registerCep = async (phone, cep) => {
-  await userModel.registerCep(phone, cep);
+const registerCep = (cep) => {
   console.log(`cep ${cep} registrado`);
-  return botMessage(
-    whatIsYourCep.title,
-    whatIsYourCep.text,
-    whatIsYourCep.next,
-    new Date(),
-  );
-};
+  return cep;
+}
 
-const registerComplement = async (phone, complement) => {
-  await userModel.registerComplement(phone, complement);
+const registerComplement = (complement) => {
   console.log(`complemento ${complement} registrado`);
-  return botMessage(
-    whatIsYourComplement.title,
-    whatIsYourComplement.text,
-    whatIsYourComplement.next,
-    new Date(),
-  );
-};
+  return complement;
+}
 
 module.exports = {
   registerPhone,
