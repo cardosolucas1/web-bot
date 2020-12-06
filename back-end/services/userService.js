@@ -1,22 +1,20 @@
-const registerPhone = (phone) => {
-  console.log(`Telefone ${phone} registrado`);
-  return phone;
-}
+const userModel = require('../models/userModel');
 
-const registerName = (name) => {
-  console.log(`Nome ${name} registrado`);
-  return name;
-}
+const registerPhone = async (phone) => {
+  await userModel.registerPhone(phone);
+};
 
-const registerCep = (cep) => {
-  console.log(`cep ${cep} registrado`);
-  return cep;
-}
+const registerName = async (phone, name) => {
+  await userModel.registerName(phone, name);
+};
 
-const registerComplement = (complement) => {
-  console.log(`complemento ${complement} registrado`);
-  return complement;
-}
+const registerCep = async (phone, cep) => {
+  await userModel.registerCep(phone, cep);
+};
+
+const registerComplement = async (phone, complement) => {
+  await userModel.registerComplement(phone, complement);
+};
 
 module.exports = {
   registerPhone,
