@@ -6,6 +6,7 @@ import Footer from '../style/Footer';
 import styled from 'styled-components';
 import zapBg from '../images/zap-background.png';
 import { ThemeContext } from '../context/ThemeProvider';
+import StoreHeader from '../components/StoreHeader';
 
 const { io } = window;
 const ENDPOINT = 'http://localhost:3001'
@@ -49,6 +50,7 @@ const WebChat = () => {
   return (
     <Background>
       <Header />
+      <StoreHeader />
       <div>
         <Ul className="collection">
           {history.map(({ name, message, time}) =>
