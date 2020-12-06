@@ -9,16 +9,20 @@ const ENDPOINT = 'http://localhost:3001'
 
 const WebChat = () => {
   const socket = useRef();
-  const exampleMessage = 'Olá, tudo bem? Me diga seu nome para começarmos, por favor?';
+  const exampleMessage = 'Teste';
   const [history, setHistory] = useState([
     { name: 'Chama no zap', message: exampleMessage, time: 'Agora mesmo' }
   ]);
 
   useEffect(() => {
     socket.current = io(ENDPOINT);
-    socket.current.on('botMessage', (data) => {
-      setHistory((currentState) => ([...currentState, data ]));
-    })
+    socket.current.on('botMessage', ({ title, text, next, }) => {
+      console.log('msg:', { title, text, next });
+      setHistory((currentState) => ([...currentState, { title, text, next } ]));
+    });
+    socket.current.emit('clientRegister', {});
+    socket.current.emit('whatIsYourName', { name: 'Lucas' });
+
   }, [])
 
   const handleSubmitMessage = (data) => {
@@ -30,8 +34,8 @@ const WebChat = () => {
     <section>
       <div>
         <ul className="collection">
-          {history.map(({ name, message, time}) =>
-            <Message name={ name } message={ message } time={ time }/>
+          {history.map(({ title, text, next }) =>
+            <Message key={title + text} name={ title } message={ text } time={ 'Agora' }/>
           )}
         </ul>
       </div>
