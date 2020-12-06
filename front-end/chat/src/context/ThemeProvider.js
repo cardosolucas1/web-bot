@@ -10,6 +10,7 @@ const ThemeProvider = ({ children }) => {
     lightGray: '#F5F6F7',
     darkGray: '#B3B3B3',
     darkGray2: '#9E9E9E',
+    darkGray3: '#85868A',
     lightGreen: '#DCF8C6',
   });
 
