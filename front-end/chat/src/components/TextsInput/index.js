@@ -18,6 +18,7 @@ const TextsInput = ({ label, iconName, onSubmit }) => {
               required 
               data-testid="message-box"
               type="text"
+              value={inputMessage}
             />
             <label htmlFor="send-message">{label}</label>
             <button
