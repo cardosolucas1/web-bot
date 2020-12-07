@@ -13,6 +13,7 @@ const MyMessage = styled.li`
   width: fit-content;
   margin-bottom: 15px;
   align-self: flex-end;
+  max-width: 80%;
 `;
 
 const BotMessage = styled.li`
@@ -24,6 +25,7 @@ const BotMessage = styled.li`
   margin-right: 41px;
   width: fit-content;
   margin-bottom: 15px;
+  max-width: 80%;
 `;
 
 const Time = styled.span`

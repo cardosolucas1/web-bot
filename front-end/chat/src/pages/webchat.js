@@ -43,6 +43,8 @@ const WebChat = () => {
     list-style-type: none;
     display: flex;
     flex-direction: column;
+    max-height: 62vh;
+    overflow: auto;
   `;
 
   const { theme } = useContext(ThemeContext);
