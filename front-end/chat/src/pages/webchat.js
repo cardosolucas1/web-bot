@@ -46,7 +46,7 @@ const WebChat = () => {
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    max-height: 62vh;
+    max-height: 55vh;
     overflow: auto;
   `;
 
