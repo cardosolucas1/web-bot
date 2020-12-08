@@ -2,7 +2,7 @@ version: "3.2"
 
 services:
   api:
-    build: back/.
+    build: back-end/.
     environment:
       - BACK_PORT=${BACK_PORT}
     ports:
@@ -13,7 +13,7 @@ services:
       - warlock-network
     command: sh -c "npm install && npm start"
   front:
-    build: front/.
+    build: front-end/chat/.
     ports:
       - "80:80"
     depends_on:
