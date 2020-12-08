@@ -13,20 +13,32 @@ const ENDPOINT = 'http://localhost:3001'
 
 const WebChat = () => {
   const socket = useRef();
-  const exampleMessage = 'Olá, tudo bem? Me diga seu nome para começarmos, por favor?';
-  const [history, setHistory] = useState([
-    { name: 'Chama no zap', message: exampleMessage, time: '10:39 AM' }
-  ]);
+  const [history, setHistory] = useState([{
+    name: 'Eu', message: 'E aí, você tem o X-Bacon?', time: '11:15 AM'
+  }]);
+
+  const [event, setEvent] = useState('');
 
   useEffect(() => {
     socket.current = io(ENDPOINT);
-    socket.current.on('botMessage', (data) => {
-      setHistory((currentState) => ([...currentState, data ]));
-    })
+    socket.current.on('botMessage', ({ name, message, time, next, username = '' }) => {
+      if (message[0] === ',') { message = username + message; }
+      setHistory((currentState) => (
+        [...currentState, {
+          name,
+          message: message[0] === ',' ? username + message : message,
+          time 
+        } ]
+      ));
+      setEvent(next);
+    });
+    socket.current.emit('clientRegister', {});
+    // socket.current.emit('confirmPhoneNumber', {});
+
   }, [])
 
   const handleSubmitMessage = (data) => {
-    socket.current.emit('clientMessage', data);
+    socket.current.emit(event, data);
     setHistory((currentState) => ([...currentState, data ]));
   }
 
@@ -43,7 +55,7 @@ const WebChat = () => {
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    max-height: 62vh;
+    max-height: 55vh;
     overflow: auto;
   `;
 
@@ -55,8 +67,13 @@ const WebChat = () => {
       <StoreHeader />
       <div>
         <Ul className="collection">
-          {history.map(({ name, message, time}) =>
-            <Message name={ name } message={ message } time={ time }/>
+          {history.map(({ name, message, time }) =>
+            <Message
+              key={time}
+              name={ name }
+              message={ message }
+              time={ time }
+            />
           )}
         </Ul>
       </div>

@@ -27,6 +27,9 @@ const Button = styled.button`
   margin: 1vh 3vh 1vh 3vh;
   height: 40px;
   width: 40px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const I = styled.i`
@@ -40,6 +43,7 @@ const TextsInput = ({ iconName, onSubmit }) => {
   const [inputMessage, setInputMessage] = useState('');
 
   const handleSubmit = (text) => {
+    if (text === '') return;
     onSubmit({ name: 'User', message: text, time: '10:39 AM' });
     setInputMessage('');
   };

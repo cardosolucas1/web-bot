@@ -1,12 +1,12 @@
-const { MongoClient } = require('mongodb');
-require('dotenv').config();
+// const { MongoClient } = require('mongodb');
+// require('dotenv').config();
 
-const connection = () =>
-  MongoClient
-    .connect(`${process.env.DB_URL}`, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then((connect) => connect.db(process.env.DB_NAME));
+// const connection = () =>
+//   MongoClient
+//     .connect(`${process.env.DB_URL}`, {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     })
+//     .then((connect) => connect.db(process.env.DB_NAME));
 
-module.exports = connection;
+// module.exports = connection;
