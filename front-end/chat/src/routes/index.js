@@ -5,7 +5,7 @@ import webChat from '../pages/webchat';
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/chat" component={ webChat } />
+      <Route exact path="/" component={ webChat } />
     </Switch>
   </BrowserRouter>
 );
