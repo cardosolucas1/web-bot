@@ -13,14 +13,23 @@ const ENDPOINT = 'http://localhost:3001'
 
 const WebChat = () => {
   const socket = useRef();
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState([{
+    name: 'Eu', message: 'E aí, você tem o X-Bacon?', time: '11:15 AM'
+  }]);
+
   const [event, setEvent] = useState('');
 
   useEffect(() => {
     socket.current = io(ENDPOINT);
-    socket.current.on('botMessage', ({ name, message, time, next }) => {
-      console.log('msg:', { name, message, time });
-      setHistory((currentState) => ([...currentState, { name, message, time } ]));
+    socket.current.on('botMessage', ({ name, message, time, next, username = '' }) => {
+      if (message[0] === ',') { message = username + message; }
+      setHistory((currentState) => (
+        [...currentState, {
+          name,
+          message: message[0] === ',' ? username + message : message,
+          time 
+        } ]
+      ));
       setEvent(next);
     });
     socket.current.emit('clientRegister', {});

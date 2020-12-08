@@ -1,34 +1,35 @@
 module.exports = {
-  confirmPhoneNumber: {
-    name: 'Chama no zap',
-    title: 'Confirmar número de telefone',
-    message: 'Digite seu número de telefone sem dígitos e com ddd, para que eu confirme sua identidade. Ex: 011 9 1111 1111',
-    next: 'whatIsYourName',
-  },
+
   whatIsYourName: {
     name: 'Chama no zap',
     title: 'Identificação do nome do usuário',
-    message: 'Olá, tudo bem? Me diga seu nome para começarmos, por favor?',
+    message: 'Opa, tudo bem? Temos, sim! Poderia me dizer seu nome pra gente começar anotar seu pedido?',
     fail: 'Seu número não pode conter números e símbolos especiais :(. Por favor, digite novamente',
-    next: 'whatIsYourCep'
+    next: 'confirmPhoneNumber'
+  },
+  confirmPhoneNumber: {
+    name: 'Chama no zap',
+    title: 'Confirmar número de telefone',
+    message: 'Beleeza :), então me envie seu número pra eu te avisar quando o pedido estiver saindo',
+    next: 'whatIsYourCep',
   },
   whatIsYourCep: {
     name: 'Chama no zap',
     title: 'Identificação da área macro do usuário',
-    message: 'Agora vamos precisar do seu CEP, digite somente os números.',
+    message: ', já anotei o seu pedido. Pra fazer a entrega, vou precisar do seu CEP, poderia me informar?',
     next: 'whatIsYourComplement',
 
   },
   whatIsYourComplement: {
     name: 'Chama no zap',
     title: 'Identificação da área micro do usuário',
-    message: 'Você poderia me informar o complemento? Ex: Casa, Apto, condomínio.',
-    next: 'listCategories',
+    message: 'Pode me dizer qual o complemento do seu endereço? Se é Casa, apartamento ou outro tipo?',
+    next: 'whatIsYourHouseNumber',
   },
-  listCategories: {
+  whatIsYourHouseNumber: {
     name: 'Chama no zap',
-    title: 'Listar categorias de produtos',
-    message: 'Atualmente temos Bebidas (1) e comidas (2), deseja ver (1) ou (2)?',
+    title: 'Identificação da área micro do usuário',
+    message: 'E qual o número da casa que o pedido vai ser entregue?',
     next: 'none'
   },
   // listQuantity: {

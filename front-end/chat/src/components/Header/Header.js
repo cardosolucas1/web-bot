@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '../../context/ThemeProvider';
-import logo from '../../images/logo.png';
+import logo from '../../images/logo.svg';
 
 const Nav = styled.nav`
-  background-color: ${(props) => props.theme.primaryGreen};
+  background-image: linear-gradient(to bottom, #19ED79, #15C465, #119E51);
   height: 100pt;
   display: flex;
   align-items: center;
