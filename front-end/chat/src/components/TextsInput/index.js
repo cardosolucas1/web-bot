@@ -10,6 +10,8 @@ const Input = styled.input`
   border-radius: 16pt;
   border: 1px;
   box-shadow: 1px 1px 1px 1px #00000014;
+  outline: none;
+  padding-left: 21px;
 `;
 
 const Form = styled.form`
