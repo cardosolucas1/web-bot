@@ -3,7 +3,9 @@ const bodyParser = require('body-parser');
 const socketIo = require('socket.io');
 const path = require('path');
 const cors = require('cors');
-const chatResponses = require('./utils/chatResponses');
+const { registerUser } = require('./controllers/userController');
+
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,12 +19,14 @@ const server = app.listen(3001, () => console.log('Listening on port 3001!'));
 
 const io = socketIo(server);
 
-io.on('connect', (socket) => {
+io.on('connect', async (socket) => {
   console.log(`Nova conexão: ${socket.id}`);
 
   socket.on('clientMessage', ({ message }) => {
     console.log(`Cliente ${socket.id} diz: ${message}`);
   })
+
+  socket.on('clientRegister', () => registerUser(socket))
 
   socket.on('disconnect', () => {
     console.log(socket.id, 'desconectou-se');
