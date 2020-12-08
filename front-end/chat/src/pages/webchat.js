@@ -9,7 +9,7 @@ import { ThemeContext } from '../context/ThemeProvider';
 import StoreHeader from '../components/StoreHeader';
 
 const { io } = window;
-const ENDPOINT = 'http://localhost:3001'
+const ENDPOINT = 'http://localhost:3333'
 
 const WebChat = () => {
   const socket = useRef();
@@ -27,7 +27,7 @@ const WebChat = () => {
         [...currentState, {
           name,
           message: message[0] === ',' ? username + message : message,
-          time 
+          time
         } ]
       ));
       setEvent(next);
