@@ -1,13 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import webChat from '../pages/webchat';
 
 const Routes = () => (
-  <BrowserRouter>
+  <HashRouter>
     <Switch>
       <Route exact path="/" component={ webChat } />
     </Switch>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default Routes;
