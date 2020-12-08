@@ -12,6 +12,5 @@ RUN npm run build
 FROM nginx:stable-alpine
 COPY --from=build /home/ubuntu/web-bot/front-end/chat/build /usr/share/nginx/html
 # new
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
