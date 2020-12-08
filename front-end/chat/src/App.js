@@ -1,6 +1,6 @@
 import React from 'react';
 import ThemeProvider from './context/ThemeProvider';
-import WebChat from '../pages/Webchat';
+import WebChat from './pages/Webchat';
 
 
 function App() {
