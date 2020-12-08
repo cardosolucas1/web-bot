@@ -23,7 +23,7 @@ module.exports = {
   whatIsYourComplement: {
     name: 'Chama no zap',
     title: 'Identificação da área micro do usuário',
-    message: 'Pode me dizer qual o complemento do seu endereço? Se é Casa, apartamento ou outro tipo?',
+    message: 'Pode me dizer qual o complemento do seu endereço? Se é casa, apartamento ou outro tipo?',
     next: 'whatIsYourHouseNumber',
   },
   whatIsYourHouseNumber: {
