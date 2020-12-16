@@ -21,6 +21,7 @@ export const Header = () => {
   return (
     <Nav theme={theme}>
       <a href="/">
+        Teste docker
         <Logo src={logo} />
       </a>
     </Nav>
