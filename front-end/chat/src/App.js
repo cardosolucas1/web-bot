@@ -1,11 +1,12 @@
 import React from 'react';
-import Routes from './routes';
 import ThemeProvider from './context/ThemeProvider';
+import WebChat from './pages/Webchat';
+
 
 function App() {
   return (
     <ThemeProvider>
-      <Routes />
+      <WebChat />
     </ThemeProvider>
   );
 }

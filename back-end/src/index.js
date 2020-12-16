@@ -15,7 +15,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.get('/', (_req, res) => res.send());
 
-const server = app.listen(3001, () => console.log('Listening on port 3001!'));
+const server = app.listen(3333, () => console.log('Listening on port 3333!'));
 
 const io = socketIo(server);
 
